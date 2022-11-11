@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;background: #222;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    background: url('https://images.wallpaperscraft.com/image/circles_highlights_background_form_size_47438_2560x1600.jpg') no-repeat top center;
+    background-size: cover;
+    height: 100vh;
+}
+.conta{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    padding: 0 20px;
+}
+.contact-fome{
+    max-width: 80%;
+    margin: 0 auto;
+    background: rgba(0,0,0,0.8);
+    padding: 0px;
+    border-radius: 5px;
+    display: flex;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+.input-class{
+    display: flex;
+    flex-direction: column;
+    margin-right: 4%;
+}
+.input-class, .msg{
+    width: 48%;
+}
+.input-class .input, .msg textarea{
+    margin: 10px 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #757575;
+    padding: 10px;
+    color: #757575;
+    width: 100%;
+}
+.msg textarea{
+    height: 200px;
+}
+::-webkit-input-placeholder{
+    color: #757575;
+}
+-moz-input-placeholder{
+    color: #757575;
+}
+.button{
+
+}
+.btn{
+    background: #757575;
+    text-align: center;
+    padding: 15px;
+    border-radius:  5px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    box-shadow: 3px 3px 3px #888888;
+}
+msg,button:hover{
+    background-color: orange;
+    color: black;
+}
+@media screen and (max-width: 600px){
+    .contact-fome{
+        flex-direction: column;
+    }
+    .msg text-area{
+        height: 80px;
+    }
+    .input-class, .msg{
+        width: 100%;
+    }
+}
+h2{
+    color: #757575;
+}
+/* Remove margins from "page content" on small screens */
+</style>
+</head>
+<body class="w3-black">
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+  <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="{% url 'about' %}" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>ABOUT</p>
+  </a>
+  <a href="{% url 'project' %}" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>PROJECTS</p>
+  </a>
+  <a href="{% url 'contact' %}" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+</nav>
+
+<div class="w3-padding-large" id="main">
+  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    <h1 class="w3-jumbo"><span class="w3-hide-small">I'm </span>Arlind Krasniqi</h1>
+    <p>Backend Developer</p>
+
+  </header>
+    <form class="formcontact" action="{% url 'contact' %}" method="post">
+    {% csrf_token %}
+        <div class="conta">
+       <div class="contact-fome">
+        <div class="input-class">
+            <hr style="width:200px" class="w3-opacity">
+            <h2>Contact</h2>
+            <input type="text" class="input" placeholder="Your Name"{{ form.name }}>
+            <input type="text" class="input" placeholder="Your Lastname"{{ form.lname }}>
+            <input type="text" class="input" placeholder="Subject" {{ form.subject }}>
+        </div>
+        <div class="msg">
+             <textarea placeholder="Message" cols="30" rows="10" {{ form.message }}></textarea>
+             <button class="btn" type="submit">Send</button>
+        </div>
+        </div>
+    </div>
+    </form>
+
+</div>
+</body>
+</html>
